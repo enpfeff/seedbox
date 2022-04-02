@@ -1,0 +1,16 @@
+#!/bin/bash
+
+user="enpfeff"
+targetHost="menoetius.feralhosting.com"
+
+dataSource="${HOME}private/deluge/data"
+dataTarget="\$HOME/private/deluge/data"
+
+torrentSource="${HOME}private/deluge/torrents"
+torrentTarget="\$HOME/private/deluge/watch"
+
+scp -Cr "${dataSource:?}/*" "${user}@${targetHost}:${dataTarget}"
+scp -C "${torrentSource:?}/*" "${user}@${targetHost}:${torrentTarget}"
+
+rm -rf "${torrentSource:?}/*"
+rm -rf "${dataSource:?}/*"
